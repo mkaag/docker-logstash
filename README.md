@@ -9,7 +9,7 @@ This repository contains the **Dockerfile** and the configuration files of [Logs
 
 ### Installation
 
-`docker build -t mkaag/kibana github.com/mkaag/docker-kibana`
+`docker build -t mkaag/kibana github.com/mkaag/docker-logstash`
 
 ### Usage
 
