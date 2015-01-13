@@ -1,5 +1,7 @@
 ## logstash Dockerfile
 
+[![Docker Hub](https://img.shields.io/badge/docker-mkaag%2Flogstash-008bb8.svg)](https://registry.hub.docker.com/u/mkaag/logstash/)
+
 This repository contains the **Dockerfile** and the configuration files of [Logstash](http://www.elasticsearch.org/overview/logstash/) for [Docker](https://www.docker.com/).
 
 ### Base Docker Image
