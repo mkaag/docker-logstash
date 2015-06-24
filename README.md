@@ -15,7 +15,7 @@ This repository contains the **Dockerfile** and the configuration files of [Logs
 
 ### Usage
 
-``bash
+```bash
 docker run -d -p 5140:5140/tcp -p 5140:5140/udp -p 5000 \
 --link elasticsearch:es \
 -v /opt/apps/logstash:/opt/etc \
