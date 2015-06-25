@@ -14,20 +14,19 @@ RUN \
   echo oracle-java7-installer shared/accepted-oracle-license-v1-1 select true | debconf-set-selections && \
   add-apt-repository -y ppa:webupd8team/java && \
   apt-get update -qqy && \
-  apt-get install -qqy oracle-java$JAVA_VERSION-installer && \
-  rm -rf /var/cache/oracle-jdk$JAVA_VERSION-installer
-ENV JAVA_HOME /usr/lib/jvm/java-$JAVA_VERSION-oracle
+  apt-get install -qqy oracle-java${JAVA_VERSION}-installer && \
+  rm -rf /var/cache/oracle-jdk${JAVA_VERSION}-installer
+ENV JAVA_HOME /usr/lib/jvm/java-${JAVA_VERSION}-oracle
 
 # -----------------------------------------------------------------------------
 # Install
 # -----------------------------------------------------------------------------
 WORKDIR /opt
 RUN \
-  curl -s -O https://download.elasticsearch.org/logstash/logstash/logstash-$LS_VERSION.tar.gz && \
-  tar xvzf logstash-$LS_VERSION.tar.gz && \
-  rm -f logstash-$LS_VERSION.tar.gz && \
-  ln -s /opt/logstash-$LS_VERSION /opt/logstash && \
-  /opt/logstash/bin/plugin -i contrib
+  curl -s -O https://download.elasticsearch.org/logstash/logstash/logstash-${LS_VERSION}.tar.gz && \
+  tar xvzf logstash-${LS_VERSION}.tar.gz && \
+  rm -f logstash-${LS_VERSION}.tar.gz && \
+  ln -s /opt/logstash-${LS_VERSION} /opt/logstash
 
 # -----------------------------------------------------------------------------
 # Post-install
