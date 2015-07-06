@@ -24,13 +24,22 @@ ENV JAVA_HOME /usr/lib/jvm/java-${JAVA_VERSION}-oracle
 WORKDIR /opt
 RUN \
   curl -s -O https://download.elasticsearch.org/logstash/logstash/logstash-${LS_VERSION}.tar.gz && \
-  tar xvzf logstash-${LS_VERSION}.tar.gz && \
+  tar xzf logstash-${LS_VERSION}.tar.gz && \
   rm -f logstash-${LS_VERSION}.tar.gz && \
   ln -s /opt/logstash-${LS_VERSION} /opt/logstash
 
 # -----------------------------------------------------------------------------
 # Post-install
 # -----------------------------------------------------------------------------
+RUN \
+  mkdir logstash/vendor/geoip && \
+  curl -s -L http://geolite.maxmind.com/download/geoip/database/GeoLiteCountry/GeoIP.dat.gz -o logstash/vendor/geoip/GeoIP.dat.gz && \
+  gunzip -q logstash/vendor/geoip/GeoIP.dat.gz
+
+RUN \
+  curl -s -L http://geolite.maxmind.com/download/geoip/database/GeoLiteCity.dat.gz -o logstash/vendor/geoip/GeoLiteCity.dat.gz && \
+  gunzip -q logstash/vendor/geoip/GeoLiteCity.dat.gz
+
 RUN mkdir /etc/service/logstash
 ADD build/logstash.sh /etc/service/logstash/run
 RUN chmod +x /etc/service/logstash/run
